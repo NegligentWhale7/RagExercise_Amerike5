@@ -25,18 +25,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //rightArm.target.position = enemyTransform.position;
-        //leftArm.target.position = enemyTransform.position;
+        rightArm.target.position = rightRestPosition.position;
+        leftArm.target.position = leftRestPosition.position;
     }
 
 
     private void Update()
     {
-       /* GetDirection();
-        if (_direction.magnitude >= 0.1f)
-        {
-            Move();
-        }*/
 
         GetDistanceRight(rightArm);
         GetRestDistanceRight(rightArm);
@@ -44,31 +39,12 @@ public class PlayerController : MonoBehaviour
         GetDistanceLeft(leftArm);
         GetRestDistanceLeft(leftArm);
 
+        
+    }
+    private void FixedUpdate()
+    {
         ThrowPunch();
     }
-
-
-    /*private Vector3 GetDirection()
-    {
-        _hInput = Input.GetAxisRaw("Horizontal");
-        _vInput = Input.GetAxisRaw("Vertical");
-        return _direction = new Vector3(_hInput, _direction.y, _vInput).normalized;
-    }
-
-    private void Move()
-    {
-        transform.position += speed * Time.deltaTime * _direction;
-        //PlayerRotate();
-    }
-
-    private void PlayerRotate()
-    {
-        float _targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _turnSmoothVelocity, turnSoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
-    }*/
-
-
     private void ThrowPunch()
     {
         if (Input.GetMouseButton(1))
